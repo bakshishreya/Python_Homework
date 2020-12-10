@@ -5,33 +5,39 @@ import os
 # Module for reading CSV files
 import csv
 
-# Module for 
-import statistics
-import numpy 
+# # Module for 
+# import statistics
+# import numpy 
 
 csvpath = os.path.join( 'Resources', 'budget_data.csv')
+
+fsa = []
+pl = []
 
 with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
-    #header = next(csvreader)
-    #print(csvreader) 
 
     # Read the header row first (skip this step if there is no header)
     csv_header = next(csvreader)
-    #print(f"CSV Header: {csv_header}"))
-    
+  
     # Read each row of data after the header
     for row in csvreader:
-        print(row[0])
-    
-print()
+        #print(row[0])
+        fsa.append(row[0])
+        pl.append(int(row[1]))
 
-fsa = []
-    
-fsa.append(row[0])
-print(fsa)
+print(f"Total number of months : {len(fsa)}")
+
+for i in range(len(pl)-1):
+    curr=pl[i]
+    futr=pl[i+1]
+    change=futr-curr
+    print(change)
+
+print(pl)
+print(f"The net total amount of Profit/Losses over the entire period:{sum(pl)}")
  
     
  
