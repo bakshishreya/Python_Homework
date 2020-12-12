@@ -4,15 +4,16 @@ import os
 
 # Module for reading CSV files
 import csv
+import numpy as np
 
-# # Module for 
-# import statistics
-# import numpy 
-
+#Path of CSV file
 csvpath = os.path.join( 'Resources', 'budget_data.csv')
 
+# varriables
 fsa = []
 pl = []
+change=[]
+monthly_profit_change =[]
 
 with open(csvpath) as csvfile:
 
@@ -28,36 +29,52 @@ with open(csvpath) as csvfile:
         fsa.append(row[0])
         pl.append(int(row[1]))
 
-print(f"Total number of months : {len(fsa)}")
 
+#net change
 for i in range(len(pl)-1):
-    curr=pl[i]
-    futr=pl[i+1]
-    change=futr-curr
-    print(change)
+    # curr=pl[i]
+    # futr=pl[i+1]
+    # change=futr-curr
 
-print(pl)
+    monthly_profit_change.append(pl[i+1]-pl[i])
+    max_increase_value = max(monthly_profit_change)
+    max_decrease_value = min(monthly_profit_change)
+
+    max_increase_month = monthly_profit_change.index(max(monthly_profit_change)) + 1
+    max_decrease_month = monthly_profit_change.index(min(monthly_profit_change)) + 1 
+
+
+    
+print("Financial Analysis")
+print("----------------------------")
+print(f"Total number of months : {len(fsa)}")
+# print amount of Profit/Losses over the entire period
 print(f"The net total amount of Profit/Losses over the entire period:{sum(pl)}")
- 
+#print(f"Average Change: {(sum(change)/len(change))}")
+print(f"Average Change: {round(sum(monthly_profit_change)/len(monthly_profit_change),2)}")
+print(f"Greatest Increase in Profits: {fsa[max_increase_month]} (${(str(max_increase_value))})")
+print(f"Greatest Decrease in Profits: {fsa[max_decrease_month]} (${(str(max_decrease_value))})")
+
+
+# # Output files
+output_file = Path( "Python_Homework","PyBank" ,"Analysis" ,"Analysis.txt")
+
+with open(output_file,"w") as file:
     
- 
-    
-    # # The total number of months included in the dataset
-    # with open(csvpath) as csvfile:
-    # for row in csv.reader(csvfile):
-    #     row = [int(val) for val in row]
-    #     row.append(sum(row))
-    #     new_rows.append(row)
-        # # Loop through looking for the video
-        # for row in csvreader:
-        # if row[0] == Month:
-        #     print(row[0] + " is rated " + row[1] + " with a user rating of " + row[5])
-        #     found = True
-
-
- 
+# Write methods to print to Financial_Analysis_Summary 
+     file.write("Financial Analysis")
+     file.write("\n")
+     file.write("----------------------------")
+     file.write("\n")
+     file.write(f"Total Months: {len(fsa)}")
+     file.write("\n")
+     file.write(f"Total: ${sum(pl)}")
+     file.write("\n")
+     file.write(f"Average Change: {round(sum(monthly_profit_change)/len(monthly_profit_change),2)}")
+     file.write("\n")
+     file.write(f"Greatest Increase in Profits: {fsa[max_increase_month]} (${(str(max_increase_value))})")
+     file.write("\n")
+     file.write(f"Greatest Decrease in Profits: {fsa[max_decrease_month]} (${(str(max_decrease_value))})")
 
 
 
-    
-    
