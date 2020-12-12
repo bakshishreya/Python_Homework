@@ -57,9 +57,9 @@ print(f"Greatest Decrease in Profits: {fsa[max_decrease_month]} (${(str(max_decr
 
 
 # # Output files
-output_file = Path( "Python_Homework","PyBank" ,"Analysis" ,"Analysis.txt")
+output_path = os.path.join( "Analysis","Analysis.txt")
 
-with open(output_file,"w") as file:
+with open(output_path,"w") as file:
     
 # Write methods to print to Financial_Analysis_Summary 
      file.write("Financial Analysis")
