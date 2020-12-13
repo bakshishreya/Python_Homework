@@ -61,20 +61,20 @@ output_path = os.path.join( "Analysis","Analysis.txt")
 
 with open(output_path,"w") as file:
     
-# Write methods to print to Financial_Analysis_Summary 
-     file.write("Financial Analysis")
-     file.write("\n")
-     file.write("----------------------------")
-     file.write("\n")
-     file.write(f"Total Months: {len(fsa)}")
-     file.write("\n")
-     file.write(f"Total: ${sum(pl)}")
-     file.write("\n")
-     file.write(f"Average Change: {round(sum(monthly_profit_change)/len(monthly_profit_change),2)}")
-     file.write("\n")
-     file.write(f"Greatest Increase in Profits: {fsa[max_increase_month]} (${(str(max_increase_value))})")
-     file.write("\n")
-     file.write(f"Greatest Decrease in Profits: {fsa[max_decrease_month]} (${(str(max_decrease_value))})")
+# Write methods to print to Analysis_Summary 
+     file.write("Financial Analysis""\n")
+    
+     file.write("----------------------------""\n")
+ 
+     file.write(f"Total Months: {len(fsa)}""\n")
+    
+     file.write(f"Total: ${sum(pl)}""\n")
+     
+     file.write(f"Average Change: {round(sum(monthly_profit_change)/len(monthly_profit_change),2)}""\n")
+   
+     file.write(f"Greatest Increase in Profits: {fsa[max_increase_month]} (${(str(max_increase_value))})""\n")
+    
+     file.write(f"Greatest Decrease in Profits: {fsa[max_decrease_month]} (${(str(max_decrease_value))})""\n")
 
 
 
